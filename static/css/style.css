@@ -958,3 +958,88 @@ input.mail_bt::placeholder {
 
 
 /* copyright section end */
+
+
+/* contact section start */
+
+
+.contact_section {
+    width: 100%;
+    float: left;
+}
+
+.contact_taital {
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.contact_section_2 {
+    width: 100%;
+    text-align: center;
+    /* background-image: url(/images/contact-bg.png); */
+    height: auto;
+    background-size: 100%;
+    padding: 40px 0px 60px 0px;
+}
+
+.mail_section_1 {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mail_text {
+    width: 100%;
+    float: left;
+    font-size: 16px;
+    color: #363636;
+    border: 0px;
+    border: 2px solid #8eb50b !important;
+    background-color: #ffffff !important;
+    padding: 10px 15px 10px 15px;
+    margin-top: 20px;
+}
+
+.massage-bt {
+    color: #363636;
+    width: 100%;
+    height: 110px;
+    font-size: 18px;
+    border: 2px solid #8eb50b !important;
+    background-color: #ffffff !important;
+    padding: 40px 15px 10px 15px;
+    margin-top: 20px;
+}
+
+.send_bt {
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.send_bt a {
+    width: 100%;
+    float: left;
+    background-color: #8eb50b;
+    color: #fefeff;
+    text-align: center;
+    padding: 12px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.send_bt a:hover {
+    background-color: #ff9800;
+    color: #fefeff;
+}
+
+.padding_right0 {
+    padding-right: 0px;
+}
+
+
+/* contact section start */

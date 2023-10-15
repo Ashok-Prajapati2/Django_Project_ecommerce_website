@@ -17,9 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , views.homepage , name = 'homepage'),
-    
+    path('contact/',views.contact , name = 'contact'),
+    path('electronic/',views.electronic , name = 'electronic'),
+    path('about-us/',views.about , name = 'about-us'),
+    path('prodectdetals/',views.prodectdetals , name = 'prodectdetals'),
+    path('category/',views.category , name = 'category')
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
+    
