@@ -59,7 +59,7 @@
     <div class="fashion_section">
       {% comment %} <div id="main_slider" class="carousel slide" data-ride="carousel"> {% endcomment %}
         {% comment %} <div class="carousel-inner"> {% endcomment %}
-          {% comment %} <div class="carousel-item active"> {% endcomment %}
+          {% comment %} < class="carousel-item active"> {% endcomment %}
             <div class="container">
               <h1 class="fashion_taital">Man & Woman Fashion</h1>
               <div class="fashion_section_2">
@@ -82,7 +82,7 @@
                   </div>
                   {% endfor %}
                 </div>
-              </div>
+              {% comment %} </div> {% endcomment %}
             </div> 
 
             <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 100px">
@@ -114,30 +114,26 @@
               </ul>
             </nav>
           </div>
-
+        
 
     <!-- fashion section end -->
+
+    {% comment %} {% for c in category %} {% endcomment %}
     <!-- electronic section start -->
     <div class="fashion_section">
-      <div
-        id="electronic_main_slider"
-        class="carousel slide"
-        data-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container">
-              <h1 class="fashion_taital">Electronic</h1>
+      <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
+              <h1 class="fashion_taital">{{c.title}}</h1>
               <div class="fashion_section_2">
                 <div class="row">
+                  {% for n in electronic_data %}
                   <div class="col-lg-4 col-sm-4">
                     <div class="box_main">
-                      <h4 class="shirt_text">Laptop</h4>
+                      <h4 class="shirt_text">{{n.item_name}}</h4>
                       <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
+                        Start Price <span style="color: #262626">$ {{n.Price}}</span>
                       </p>
                       <div class="electronic_img">
-                        <img src="/static/images/laptop-img.png" />
+                        <img src="/media/{{n.item_img}}" />
                       </div>
                       <div class="btn_main">
                         <div class="buy_bt"><a href="#">Buy Now</a></div>
@@ -145,361 +141,47 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Mobile</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/mobile-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Computers</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/computer-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  {% endfor%}
+               
+                {% comment %} </div>
               </div>
+              {% endfor %}
+              {% endcomment %}
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="container">
-              <h1 class="fashion_taital">Electronic</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Laptop</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/laptop-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Mobile</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/mobile-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Computers</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/computer-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+       </div>
+        <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 100px">
+            <nav aria-label="...">
+              <ul class="pagination">
+                {% if electronic_data.has_previous %}
+                <li class="page-item ">
+                  <a class="page-link" href="?page=1">First</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ electronic_data.previous_page_number }}">Previous</a>
+              </li>
+                {% endif %}
+              {% for n in electronic.paginator.page_range %}
+              <li class="page-item {% if n == electronic_data.number %}active{% endif %}">
+                <a class="page-link" href="?page={{n }}">{{ n }}</a>
+            </li>
+                {% endfor %}
+               
+            {% if electronic_data.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ electronic_data.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ electronic_data.paginator.num_pages }}">Last</a>
+            </li>
+            {% endif %}
+
+              </ul>
+            </nav>
           </div>
-          <div class="carousel-item">
-            <div class="container">
-              <h1 class="fashion_taital">Electronic</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Laptop</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/laptop-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Mobile</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/mobile-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Computers</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/static/images/computer-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a
-          class="carousel-control-prev"
-          href="#electronic_main_slider"
-          role="button"
-          data-slide="prev"
-        >
-          <i class="fa fa-angle-left"></i>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#electronic_main_slider"
-          role="button"
-          data-slide="next"
-        >
-          <i class="fa fa-angle-right"></i>
-        </a>
-      </div>
-    </div>
+
+          {% comment %} {{ endfor }} {% endcomment %}
     <!-- electronic section end -->
-    <!-- jewellery  section start -->
-    <div class="jewellery_section">
-      <div
-        id="jewellery_main_slider"
-        class="carousel slide"
-        data-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container">
-              <h1 class="fashion_taital">Jewellery Accessories</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Jumkas</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/jhumka-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Necklaces</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/neklesh-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Kangans</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/kangan-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <h1 class="fashion_taital">Jewellery Accessories</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Jumkas</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/jhumka-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Necklaces</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/neklesh-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Kangans</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/kangan-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-              <h1 class="fashion_taital">Jewellery Accessories</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Jumkas</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/jhumka-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Necklaces</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/neklesh-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">Kangans</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ 100</span>
-                      </p>
-                      <div class="jewellery_img">
-                        <img src="/static/images/kangan-img.png" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a
-          class="carousel-control-prev"
-          href="#jewellery_main_slider"
-          role="button"
-          data-slide="prev"
-        >
-          <i class="fa fa-angle-left"></i>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#jewellery_main_slider"
-          role="button"
-          data-slide="next"
-        >
-          <i class="fa fa-angle-right"></i>
-        </a>
-        <div class="loader_main">
-          <div class="loader"></div>
-        </div>
-      </div>
-    </div>
-    <!-- jewellery  section end -->
   </section>
 
   {% endblock %}

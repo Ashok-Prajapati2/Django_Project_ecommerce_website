@@ -914,9 +914,9 @@
         font-size: 40px;
     }
 
-    .dropdown, .dropleft, .dropright, .dropup{
+     .dropdown, .dropleft, .dropright, .dropup{
         display: none;
-    }
+    } 
 
     .main {
         margin: 0px 0px;

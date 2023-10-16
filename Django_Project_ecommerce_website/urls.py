@@ -27,7 +27,7 @@ urlpatterns = [
     path('electronic/',views.electronic , name = 'electronic'),
     path('about-us/',views.about , name = 'about-us'),
     path('prodectdetals/',views.prodectdetals , name = 'prodectdetals'),
-    path('category/',views.category , name = 'category')
+    path('category/',views.category , name = 'category'),
 ]
 
 
