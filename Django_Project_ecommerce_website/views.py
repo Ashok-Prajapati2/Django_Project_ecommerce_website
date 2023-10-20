@@ -1,6 +1,5 @@
-from django.http import  HttpResponseRedirect
 from django.shortcuts import render
-from homeapp.models import Fashion , ele
+from homeapp.models import Category , Fashion 
 from django.core.paginator import Paginator
 
 
@@ -12,29 +11,18 @@ def paginator_function(data , show , request ):
     return { 'f_data': f_data , 'total_page' : total_page}
 
 def homepage(request):
-#     category_item =  category.objects.all().order_by('category_name')
-#     print(category_item)
+    category_items =  Category.objects.all().order_by('category_name')
+
     fashion_data_n = Fashion.objects.all().order_by('item_name')
-    electronic_data_n = ele.objects.all().order_by('item_name')
-    
     fashion_data = paginator_function(fashion_data_n, 3, request)
-    electronic_data = paginator_function(electronic_data_n, 3, request)
-    
     total_page = fashion_data['total_page']
-    e_total_page = electronic_data['total_page']
-    
     fashion_data  = fashion_data['f_data']
-    electronic_data = electronic_data['f_data']
     
-    category = ['food' , 'toys']
     
     data = {
          'fashion_data' : fashion_data , 'total_page' : total_page , 
-          'electronic_data' : electronic_data , 'e_total_page' : e_total_page , 
-          
-          'category' : category,
-         
-    }
+          'category_items' : category_items ,
+          }
     return render(request , 'homepage.html' , data)
 
 

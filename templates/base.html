@@ -105,8 +105,8 @@
               <a href={% url 'homepage' %}>Home</a>
               <a href={% url 'about-us' %}>About US</a>
               <a href={% url 'contact' %}>Contact US</a>
-              {%for n in  category %}
-                <a href="">{{n}}</a>
+              {%for n in  category_items %}
+                <a href="">{{n.category_name}}</a>
                 {% endfor%}
               
             </div>
@@ -125,8 +125,8 @@
                 All Category
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {%for n in  category%}
-                <a class="dropdown-item" href="">{{n}}</a>
+                {%for n in  category_items%}
+                <a class="dropdown-item" href="">{{n.category_name}}</a>
                 {% endfor%}
               </div>
             </div>

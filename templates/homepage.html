@@ -2,7 +2,6 @@
 {%extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {%block content %}
-
 <style>
   .col-sm-12 h1 img{
     width: 80px;
@@ -14,174 +13,76 @@
         <div class="container">
           <div id="my_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-
-             {% for n in fashion_data%}
+             {% for n in fashion_data %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 <div class="row">
                   <div class="col-sm-12">
-                    <h1 class="banner_taital">
-                      {{n.item_name}} <br /> <img src="/media/{{n.item_img}}" />
-                      <br/>
-                      <p class="price_text">
-                        Price <span style="color: #262626">$ {{n.Price}}</span>
-                      </p>
+                    <h1 class="banner_taital"> {{n.item_name}} <br /> <img src="/media/{{n.item_img}}" /><br/>
+                      <p class="price_text"> Price <span style="color: #262626">$ {{n.price}}</span> </p>
                     </h1>
                     <div class="buynow_bt"><a href="">Buy Now</a></div>
                   </div>
                 </div>
               </div>
               {% endfor %}
-              
             </div>
-
-            <a class="carousel-control-prev"
-              href="#my_slider"
-              role="button"
-              data-slide="prev"
-            >
-              <i class="fa fa-angle-left"></i>
-            </a>
-            <a
-              class="carousel-control-next"
-              href="#my_slider"
-              role="button"
-              data-slide="next"
-            >
-              <i class="fa fa-angle-right"></i>
-            </a>
+            <a class="carousel-control-prev" href="#my_slider" role="button"  data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="carousel-control-next"  href="#my_slider" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
           </div>
         </div>
       </div>
       <!-- banner section end -->
     </div>
     <!-- banner bg main end -->
-    <!-- fashion section start -->
-    <div class="fashion_section">
-      {% comment %} <div id="main_slider" class="carousel slide" data-ride="carousel"> {% endcomment %}
-        {% comment %} <div class="carousel-inner"> {% endcomment %}
-          {% comment %} < class="carousel-item active"> {% endcomment %}
+<!-- fashion section start -->
+{% for category_item in category_items %}
+  <div class="fashion_section">
+   <div id="main_slider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
             <div class="container">
-              <h1 class="fashion_taital">Man & Woman Fashion</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  {% for n in fashion_data %}
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">{{n.item_name}}</h4>
-                      <p class="price_text">
-                        Price <span style="color: #262626">$ {{n.Price}}</span>
-                      </p>
-                      <div class="tshirt_img">
-                        <img src="/media/{{n.item_img}}" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="">See More</a></div>
-                      </div>
-                    </div>
+               <h1 class="fashion_taital">{{ category_item.category_name }}</h1>
+               <div class="fashion_section_2">
+                  <div class="row">
+                     {% for fashion_item in category_item.fashion_set.all %}
+                     <div class="col-lg-4 col-sm-4">
+                        <div class="box_main">
+                           <h4 class="shirt_text">{{ fashion_item.item_name }}</h4>
+                           <p class="price_text">Price  <span style="color: #262626;">$ {{ fashion_item.price }}</span></p>
+                           <div class="tshirt_img"><img src=" /media/{{fashion_item.item_img}} "></div>
+                           <div class="btn_main">
+                              <div class="buy_bt"><a href="#">Buy Now</a></div>
+                              <div class="seemore_bt"><a href="#">See More</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
                   </div>
-                  {% endfor %}
-                </div>
-              {% comment %} </div> {% endcomment %}
-            </div> 
-
-            <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 100px">
-            <nav aria-label="...">
-              <ul class="pagination">
-                {% if fashion_data.has_previous %}
-                <li class="page-item ">
-                  <a class="page-link" href="?page=1">First</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ fashion_data.previous_page_number }}">Previous</a>
-              </li>
-                {% endif %}
-              {% for n in fashion_data.paginator.page_range %}
-              <li class="page-item {% if n == fashion_data.number %}active{% endif %}">
-                <a class="page-link" href="?page={{n }}">{{ n }}</a>
-            </li>
-                {% endfor %}
-               
-            {% if fashion_data.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ fashion_data.next_page_number }}">Next</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ fashion_data.paginator.num_pages }}">Last</a>
-            </li>
-            {% endif %}
-
-              </ul>
-            </nav>
-          </div>
-        
-
-    <!-- fashion section end -->
-
-    {% comment %} {% for c in category %} {% endcomment %}
-    <!-- electronic section start -->
-    <div class="fashion_section">
-      <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
-              <h1 class="fashion_taital">{{c.title}}</h1>
-              <div class="fashion_section_2">
-                <div class="row">
-                  {% for n in electronic_data %}
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="box_main">
-                      <h4 class="shirt_text">{{n.item_name}}</h4>
-                      <p class="price_text">
-                        Start Price <span style="color: #262626">$ {{n.Price}}</span>
-                      </p>
-                      <div class="electronic_img">
-                        <img src="/media/{{n.item_img}}" />
-                      </div>
-                      <div class="btn_main">
-                        <div class="buy_bt"><a href="#">Buy Now</a></div>
-                        <div class="seemore_bt"><a href="#">See More</a></div>
-                      </div>
-                    </div>
-                  </div>
-                  {% endfor%}
-               
-                {% comment %} </div>
-              </div>
-              {% endfor %}
-              {% endcomment %}
+               </div>
             </div>
-          </div>
-       </div>
-        <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 100px">
-            <nav aria-label="...">
-              <ul class="pagination">
-                {% if electronic_data.has_previous %}
-                <li class="page-item ">
-                  <a class="page-link" href="?page=1">First</a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ electronic_data.previous_page_number }}">Previous</a>
-              </li>
-                {% endif %}
-              {% for n in electronic.paginator.page_range %}
-              <li class="page-item {% if n == electronic_data.number %}active{% endif %}">
-                <a class="page-link" href="?page={{n }}">{{ n }}</a>
-            </li>
-                {% endfor %}
-               
-            {% if electronic_data.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ electronic_data.next_page_number }}">Next</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ electronic_data.paginator.num_pages }}">Last</a>
-            </li>
-            {% endif %}
-
-              </ul>
-            </nav>
-          </div>
-
-          {% comment %} {{ endfor }} {% endcomment %}
-    <!-- electronic section end -->
-  </section>
-
-  {% endblock %}
+           </div>
+      </div>
+   <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 100px">
+        <nav aria-label="...">
+          <ul class="pagination">
+          {% if fashion_data.has_previous %}
+            <li class="page-item "> <a class="page-link" href="?page=1">First</a>  </li>
+            <li class="page-item">  <a class="page-link" href="?page={{ fashion_data.previous_page_number }}">Previous</a> </li>
+           {% endif %}
+          {% for n in fashion_data.paginator.page_range %}
+            <li class="page-item {% if n == fashion_data.number %}active{% endif %}"> <a class="page-link" href="?page={{n }}">{{ n }}</a></li>
+          {% endfor %}
+           
+        {% if fashion_data.has_next %}
+        <li class="page-item"> <a class="page-link" href="?page={{ fashion_data.next_page_number }}">Next</a> </li>
+        <li class="page-item">  <a class="page-link" href="?page={{ fashion_data.paginator.num_pages }}">Last</a> </li>
+        {% endif %}
+         </ul>
+        </nav> 
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!-- fashion section end -->
+</section>
+{% endblock %}

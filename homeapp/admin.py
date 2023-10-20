@@ -1,25 +1,11 @@
 from django.contrib import admin
-# from homeapp.models import category
-
-# admin.site.register(category)
-
-# class sadmin(admin.ModelAdmin):
-#     list_display=('item_name','Price','item_img')
-# admin.site.register(category.Fashion,sadmin)
-
-# class elec(admin.ModelAdmin):
-#     list_display=('item_name','Price','item_img')
-# admin.site.register(category.ele,elec)
+from .models import Category, Fashion 
 
 
-from homeapp.models import Fashion , ele
+class FashionAdmin(admin.ModelAdmin):
+    list_display = ('item_name', 'price', 'item_img')
+    list_filter = ('category',)  # Add filters if needed
+    search_fields = ('item_name', 'category__category_name')  # Add search fields if needed
 
-# admin.site.register(category)
-
-class sadmin(admin.ModelAdmin):
-    list_display=('item_name','Price','item_img')
-admin.site.register(Fashion,sadmin)
-
-class elec(admin.ModelAdmin):
-    list_display=('item_name','Price','item_img')
-admin.site.register(ele,elec)
+admin.site.register(Category)
+admin.site.register(Fashion, FashionAdmin)  
