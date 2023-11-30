@@ -1,4 +1,4 @@
-    
+
 from django.db import models
 
 class Category(models.Model):
@@ -15,5 +15,5 @@ class Fashion(models.Model):
 
     def __str__(self):
         return self.item_name
-    
+ 
 

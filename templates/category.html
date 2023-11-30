@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% block title %}category{% endblock %}
+{% block content %}
+
+<div class="grid text-center">
+    {% for category_item in category_items %}
+    <div class="g-col-6 g-col-md-4">
+        <div class="container">
+            <h1 class="fashion_taital">{{ category_item }}</h1>
+          
+            <div class="row">
+              {% for fashion_item in category_item.fashion_set.all %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                  <div class="box_main mb-4">
+                    <h4 class="shirt_text">{{ fashion_item.item_name }}</h4>
+                    <p class="price_text">
+                      Price <span class="text-dark">$ {{ fashion_item.price }}</span>
+                    </p>
+                    <div class="tshirt_img">
+                      <img src="/media/{{ fashion_item.item_img }}" class="img-fluid" />
+                    </div>
+                    <div class="btn_main mt-3">
+                      <div class="buy_bt"><a href="#" class="btn btn-primary">Buy Now</a></div>
+                      <div class="seemore_bt"><a href="#" class="btn btn-secondary">See More</a></div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}
+

@@ -42,4 +42,12 @@ def prodectdetals(request):
      return render(request , 'prodectdetals.html')
     
 def category(request):
-     return render(request , 'category.html')
+    category_items = Category.objects.all().order_by('category_name')
+    fashion_data = Fashion.objects.all().order_by('item_name')
+    
+    data = {
+         'fashion_data' : fashion_data , 
+          'category_items' : category_items ,
+          }
+
+    return render(request , 'category.html' , data)
